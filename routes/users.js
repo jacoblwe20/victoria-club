@@ -1,10 +1,11 @@
-//var dataAdapter = require( './lib/adapter' );
+var DataAdapter = require( '../lib/dataAdapter' );
+var dataAdapter = DataAdapter('./parseAdapter'); 
 
 
 var users = {
   index: {
     handler: function(request) {
-      Parse.get("/users.json", function(resp) {
+      dataAdapter.read( "users", {}, function(resp) {
         if (resp.error) {
           request.reply({success: false, error: {message: resp.error}})
         } else {
